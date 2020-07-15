@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import simplejson as json
 import fetchdata 
 
@@ -18,6 +18,17 @@ def fetch_data():
         mimetype='application/json'
     )
     return response 
+
+@app.route('/vote', methods=['GET', 'POST'])
+def vote():
+    data = request.json
+    x = {'submission': 'successful'}    
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 if __name__ == "__main__":
     app.run()
