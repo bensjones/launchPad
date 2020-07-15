@@ -79,5 +79,4 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let pie3 = new PieChart('stability', 'Stability');
   pie3.setup();
   pie3.render(chartData.stability);
-
 });
