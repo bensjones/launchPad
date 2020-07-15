@@ -6,3 +6,47 @@ text {
 body {
     background-color: #292075;
 }
+
+.btn-react {
+    background-color: #61dafb;
+}
+.btn-react:hover {
+    background-color: #2EA7C8;
+    color: white;
+}
+
+.btn-angular {
+    background-color: #DD0031;
+}
+.btn-angular:hover {
+    background-color: #AA0000;
+    color: white;
+}
+
+.btn-ember {
+    background-color: #E04E39;
+}
+.btn-ember:hover {
+    background-color: #AD1B06;
+    color: white;
+}
+
+.btn-vue {
+    background-color: #35495e;
+}
+
+.btn-vue:hover {
+    background-color: #02162B;
+    color: white;
+}
+
+.text-contrast-color {
+    color: white
+}
+
+.vote-label {
+    font-weight: bold;
+    font-size: large;
+}
+
+.top-buffer { margin-top:10px; }

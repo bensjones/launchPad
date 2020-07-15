@@ -40,37 +40,45 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6"><svg id="votes"></svg></div>
+        
 
         <div class="col-6">
           <div class="row">
-            <div class="col">
+            <div class="col text-contrast-color vote-label">
               Cast Your Vote
             </div>
           </div>
-          <div class="row">
+          <div class="row ">
             <div class="col">
               <form>
-                <label for="email">Enter you Email address</label>
-                <input type="email" name="email" placeholder="email@example.com" required>
-                <input onclick="Clicked(this);" type="submit" name="submit" value="Change" />
-                <input onclick="Clicked(this);" type="submit" name="submit" value="Delete" />
+                <div class="row">
+                  <div class="col">
+                    <input type="email" name="email" placeholder="email@example.com" required>
+                  </div>
+                </div>
+                <div class="row top-buffer">
+                  <div class="col">
+                    <button class="btn btn-react" onclick="Clicked(this);" type="submit" name="submit"
+                      value="React">React</button>
+                    <input class="btn btn-angular" onclick="Clicked(this);" type="submit" name="submit"
+                      value="Angular" />
+                    <input class="btn btn-ember" onclick="Clicked(this);" type="submit" name="submit" value="Ember" />
+                    <input class="btn btn-vue" onclick="Clicked(this);" type="submit" name="submit" value="Vue" />
+                  </div>
+                </div>
               </form>
             </div>
           </div>
         </div>
+
+        <div class="col-6">
+          Voting Results
+          <svg id="votes"></svg>
+        </div>
+
       </div>
     </div>
   </div>
 </body>
 
 </html>
-
-<!-- form method="post" onsubmit="return checkForm(this);">
-  <label for="email">Enter you Email address</label>
-  <input type="email" name="email" placeholder="email@example.com" required>
-  <input onclick="Clicked(this);" type="submit" name="submit" value="React" />
-  <input onclick="Clicked(this);" type="submit" name="submit" value="Angular" />
-  <input onclick="Clicked(this);" type="submit" name="submit" value="Ember" />
-  <input onclick="Clicked(this);" type="submit" name="submit" value="Vue" />
-</form -->
