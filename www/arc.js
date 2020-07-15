@@ -1,9 +1,10 @@
 
 export class PieChart {
 
-  constructor(identifier) {
+  constructor(identifier, title) {
     this.identifier = identifier;
-    this.color = d3.scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3']);
+    this.title = title;
+    this.color = d3.scaleOrdinal(['#61dafb', '#DD0031', '#E04E39', '#35495e']);
   }
 
   setup() {
@@ -12,7 +13,7 @@ export class PieChart {
     const width = 250;
     const margin = { top: 80, left: 70, bottom: 0, right: 0 };
 
-    this.svg = d3.select('.' + this.identifier);
+    this.svg = d3.select('#' + this.identifier);
 
     this.chart = this.svg.append('g')
       .attr('width', width)
@@ -51,7 +52,7 @@ export class PieChart {
 
     const arcDim = d3.arc().innerRadius(50)
       .outerRadius(25);
-    /*
+   
         const titleText = this.svg.selectAll('text.po-title').data([meta.year]);
     
         titleText.exit().remove();
@@ -64,9 +65,9 @@ export class PieChart {
           .merge(titleText)
           .text(
             (d) => {
-              return this.title + ' ' + d;
+              return this.title;
             });
-    */
+  
     const pieChart = this.chart.selectAll('path')
       .data(arcs);
 

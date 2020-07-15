@@ -17,11 +17,13 @@ function prepBody(data) {
     console.log(`${key}: ${value}`);
     let currentDiv = document.getElementById("charts");
     let newSvg = document.createElement("svg");
-    newSvg.classList.add(key.replace(' ', '_'));
+    newSvg.id = (key.replace(' ', '_'));
     currentDiv.appendChild(newSvg);
+    window.getComputedStyle( document.querySelector('svg') );
   }
 }
 
+/*
 function marshalData(data) {
 
   let chartData = {};
@@ -41,17 +43,41 @@ function marshalData(data) {
   }
   return chartData;
 }
+*/
 
+function marshalData(data) {
 
-function postProcess(data) {
+  let chartData = {};
 
-
+  for (const [key, value] of Object.entries(data)) {
+    let strKey = key.replace(' ', '_');
+    chartData[strKey] = {};
+    chartData[strKey].meta = {};
+    chartData[strKey].data = [];
+    let total = 0;
+    for (let i in value) {
+      let t = parseInt(value[i][2]);
+      total += t;
+    }
+    for (let i in value) {
+      let t = parseInt(value[i][2]);
+      chartData[strKey].data[i] = { label: value[i][1]+' '+(t/total *100).toFixed(2) + '%', value: t, sortIndex: i };
+    }
+    chartData[strKey].meta = { total: total };
+  }
+  return chartData;
 }
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  prepBody(fetched_data);
   let chartData = marshalData(fetched_data);
-  let pie1 = new PieChart('community_support');
+  let pie1 = new PieChart('community_support', 'Community Support');
   pie1.setup();
   pie1.render(chartData.community_support);
+  let pie2 = new PieChart('development_activity', 'Development Activity');
+  pie2.setup();
+  pie2.render(chartData.development_activity);
+  let pie3 = new PieChart('stability', 'Stability');
+  pie3.setup();
+  pie3.render(chartData.stability);
+
 });
