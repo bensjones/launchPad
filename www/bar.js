@@ -37,18 +37,24 @@ export class BarChart {
         this.chart.append('g')
             .attr('transform', `translate(0, ${this.height})`)
             .call(d3.axisBottom(xScale));
-
+        this.chart.append('g')
+            .attr('class', 'grid')
+            .call(d3.axisLeft()
+                .scale(yScale)
+                .tickSize(-this.width, 0, 0)
+                .tickFormat(''));
         this.chart.selectAll()
             .data(input)
             .enter()
             .append('rect')
             .attr('x', (d) => xScale(d.framework))
+            .attr('class', (d) => d.framework)
             .attr('y', (d) => yScale(d.votes))
             .attr('height', (d) => this.height - yScale(d.votes))
             .attr('width', xScale.bandwidth());
 
         this.svg.append('text')
-            .attr('x', - (this.height / 1.9 ) )
+            .attr('x', - (this.height / 1.9))
             .attr('y', this.margin.top)
             .attr('transform', 'rotate(-90)')
             .attr('text-anchor', 'middle')
@@ -56,8 +62,11 @@ export class BarChart {
 
         this.svg.append('text')
             .attr('x', this.width / 1.5 + this.margin.bottom)
-            .attr('y',  this.width - this.margin.top)
+            .attr('y', this.width - this.margin.top)
             .attr('text-anchor', 'middle')
             .text('Framework');
+
+
+
     }
 }

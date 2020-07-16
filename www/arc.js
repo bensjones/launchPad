@@ -90,7 +90,7 @@ export class PieChart {
     legendG.enter()
       .append('g')
       .attr('transform', (d, i) => {
-        return 'translate(150 , ' + (i * 20 + 40) + ')';
+        return 'translate(140 , ' + (i * 20 + 40) + ')';
       })
       .attr('class', 'legend')
       .append('circle')
@@ -110,7 +110,7 @@ export class PieChart {
       .append('text')
       .attr('class', 'po-detail')
       .attr('transform', (d, i) => {
-        return 'translate(150 , ' + (i * 20 + 40) + ')';
+        return 'translate(145 , ' + (i * 20 + 40) + ')';
       })
       .style('font-size', 12)
       .attr('y', 10)

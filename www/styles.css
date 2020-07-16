@@ -11,37 +11,45 @@ body {
     font-weight: bold;
 }
 
-.btn-react {
+.react {
     background-color: #61dafb;
+    fill: #61dafb;
 }
-.btn-react:hover {
+.react:hover {
     background-color: #2EA7C8;
     color: white;
+    fill: #2EA7C8;
 }
 
-.btn-angular {
+.angular {
     background-color: #DD0031;
+    fill:#DD0031;
 }
-.btn-angular:hover {
+.angular:hover {
     background-color: #AA0000;
     color: white;
+    fill:#AA0000;
 }
 
-.btn-ember {
+.emberjs {
     background-color: #E04E39;
+    fill:#E04E39;
 }
-.btn-ember:hover {
+.emberjs:hover {
     background-color: #AD1B06;
     color: white;
+    fill:#AD1B06;
 }
 
-.btn-vue {
+.vuejs {
     background-color: #35495e;
+    fill:#35495e;
 }
 
-.btn-vue:hover {
+.vuejs:hover {
     background-color: #02162B;
     color: white;
+    fill:#02162B;
 }
 
 .text-contrast-color {
