@@ -26,24 +26,27 @@ export class BarChart {
             .domain([0, d3.max(d3.extent(input, (d) => { return d.votes }))])
             .range([this.height, 0]);
 
-        this.chart.append('g')
-            .call(d3.axisLeft(yScale));
+        
 
         const xScale = d3.scaleBand()
             .range([0, this.width])
             .domain(input.map((s) => s.framework))
             .padding(0.2);
+/*
+            this.chart.append('g')
+            .call(d3.axisLeft(yScale));
 
         this.chart.append('g')
             .attr('transform', `translate(0, ${this.height})`)
             .call(d3.axisBottom(xScale));
+
         this.chart.append('g')
             .attr('class', 'grid')
             .call(d3.axisLeft()
                 .scale(yScale)
                 .tickSize(-this.width, 0, 0)
                 .tickFormat(''));
-/*
+
 const textUpdate = svg.selectAll("text")
 .data(randomLetters());
 
@@ -56,17 +59,18 @@ textEnter.merge(textUpdate)
 .text(d => d);
 */
         const bar = this.chart.selectAll().data(input);
-        
-        const barEndter = bar.enter().append('rect');
+        bar.exit().remove();
 
-        barEndter.merge(bar)
+        bar.enter()
+            .append('rect')
+            .merge(bar)
             .attr('x', (d) => xScale(d.framework))
             .attr('class', (d) => d.framework)
             .attr('y', (d) => yScale(d.votes))
             .attr('height', (d) => this.height - yScale(d.votes))
             .attr('width', xScale.bandwidth());
             
-        bar.exit().remove();
+   /*     
 
         this.svg.append('text')
             .attr('x', - (this.height / 1.9))
@@ -80,7 +84,7 @@ textEnter.merge(textUpdate)
             .attr('y', this.width - this.margin.top)
             .attr('text-anchor', 'middle')
             .text('Framework');
-
+*/
 
 
     }

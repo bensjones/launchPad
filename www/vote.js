@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                   { 'framework':'emberjs', 'votes': json.emberjs}, 
                   { 'framework':'vuejs', 'votes': json.vuejs} 
                 ]
-                bar.render(json)
+                globalThis.bar.render(barData)
               }
             )
             .catch(error => console.log(error));

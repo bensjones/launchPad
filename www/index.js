@@ -9,8 +9,6 @@ let voter_data = [
   { 'framework':'emberjs', 'votes': 100}, 
   { 'framework':'vuejs', 'votes': 120}];
 
-export let bar;
-
 function refactorAPIDataToD3Format(data) {
 
   let chartData = {};
@@ -67,7 +65,8 @@ fetch('http://lp.local/api/fetch')
   let pie3 = new PieChart('stability', 'Stability');
   pie3.setup();
   pie3.render(chartData.stability);
-  bar = new BarChart();
+  let bar = new BarChart();
+  globalThis.bar = bar;
   bar.setup();
   bar.render(voter_data);
 });
