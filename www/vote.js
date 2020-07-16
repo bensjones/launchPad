@@ -20,15 +20,35 @@ document.addEventListener('DOMContentLoaded', function (event) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({'session':session, 'email': form.email.value, 'framework': framework.value })
+      body: JSON.stringify({ 'session': session, 'email': form.email.value, 'framework': framework.value })
     })
       .then(
         (response) => response.json()
       )
       .then(
-        json => console.log(json)
+        json => {
+          console.log(json);
+          fetch('/api/tally')
+            .then(
+              (response) => response.json()
+            )
+            .then(
+              json => {
+                console.log(json)
+                let barData = [
+                  { 'framework':'react', 'votes': json.react}, 
+                  { 'framework':'angular', 'votes': json.angular}, 
+                  { 'framework':'emberjs', 'votes': json.emberjs}, 
+                  { 'framework':'vuejs', 'votes': json.vuejs} 
+                ]
+                bar.render(json)
+              }
+            )
+            .catch(error => console.log(error));
+        }
       )
       .catch(error => console.log(error));
+
     return false;
   });
 });

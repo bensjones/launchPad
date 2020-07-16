@@ -43,15 +43,30 @@ export class BarChart {
                 .scale(yScale)
                 .tickSize(-this.width, 0, 0)
                 .tickFormat(''));
-        this.chart.selectAll()
-            .data(input)
-            .enter()
-            .append('rect')
+/*
+const textUpdate = svg.selectAll("text")
+.data(randomLetters());
+
+const textEnter = textUpdate.enter().append("text");
+
+const textExit = textUpdate.exit().remove();
+
+textEnter.merge(textUpdate)
+.attr("x", (d, i) => i * 16)
+.text(d => d);
+*/
+        const bar = this.chart.selectAll().data(input);
+        
+        const barEndter = bar.enter().append('rect');
+
+        barEndter.merge(bar)
             .attr('x', (d) => xScale(d.framework))
             .attr('class', (d) => d.framework)
             .attr('y', (d) => yScale(d.votes))
             .attr('height', (d) => this.height - yScale(d.votes))
             .attr('width', xScale.bandwidth());
+            
+        bar.exit().remove();
 
         this.svg.append('text')
             .attr('x', - (this.height / 1.9))

@@ -9,18 +9,7 @@ let voter_data = [
   { 'framework':'emberjs', 'votes': 100}, 
   { 'framework':'vuejs', 'votes': 120}];
 
-  /*
-function prepBody(data) {
-  for (const [key, value] of Object.entries(data)) {
-    console.log(`${key}: ${value}`);
-    let currentDiv = document.getElementById("charts");
-    let newSvg = document.createElement("svg");
-    newSvg.id = (key.replace(' ', '_'));
-    currentDiv.appendChild(newSvg);
-    window.getComputedStyle( document.querySelector('svg') );
-  }
-}
-*/
+export let bar;
 
 function refactorAPIDataToD3Format(data) {
 
@@ -78,7 +67,7 @@ fetch('http://lp.local/api/fetch')
   let pie3 = new PieChart('stability', 'Stability');
   pie3.setup();
   pie3.render(chartData.stability);
-  let bar = new BarChart();
+  bar = new BarChart();
   bar.setup();
   bar.render(voter_data);
 });
