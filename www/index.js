@@ -1,7 +1,13 @@
 import { PieChart } from './arc.js';
-
+import { BarChart } from './bar.js';
 
 let fetched_data = { "development activity": [["facebook", "react", "13394"], ["angular", "angular.js", "9005"], ["emberjs", "ember.js", "19915"], ["vuejs", "vue", "3104"]], "community support": [["facebook", "react", "9788"], ["angular", "angular.js", "7926"], ["emberjs", "ember.js", "9086"], ["vuejs", "vue", "1832"]], "stability": [["facebook", "react", "19133"], ["angular", "angular.js", "16923"], ["emberjs", "ember.js", "15371"], ["vuejs", "vue", "10904"]] };
+
+let voter_data = [
+  { 'framework':'react', 'votes': 300}, 
+  { 'framework':'angular', 'votes': 500}, 
+  { 'framework':'emberjs', 'votes': 100}, 
+  { 'framework':'vuejs', 'votes': 120}];
 
 /*
 fetch('http://lp.local/api/fetch')
@@ -79,4 +85,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let pie3 = new PieChart('stability', 'Stability');
   pie3.setup();
   pie3.render(chartData.stability);
+  let bar = new BarChart();
+  bar.setup();
+  bar.render(voter_data);
 });
