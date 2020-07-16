@@ -6,6 +6,10 @@ export class BarChart {
         this.color = d3.scaleOrdinal(['#61dafb', '#DD0031', '#E04E39', '#35495e']);
         this.height = 190;
         this.width = 250;
+        this.rendered = false;
+        this.yAxisCall;
+        this.yAxis;
+        this.girdLines;
     }
 
     setup() {
@@ -25,40 +29,47 @@ export class BarChart {
         const yScale = d3.scaleLinear()
             .domain([0, d3.max(d3.extent(input, (d) => { return d.votes }))])
             .range([this.height, 0]);
-
-        
+            
+        this.yAxisCall = d3.axisLeft(yScale).ticks(5).tickFormat(d3.format("d"));
 
         const xScale = d3.scaleBand()
             .range([0, this.width])
             .domain(input.map((s) => s.framework))
             .padding(0.2);
-/*
-            this.chart.append('g')
-            .call(d3.axisLeft(yScale));
 
-        this.chart.append('g')
-            .attr('transform', `translate(0, ${this.height})`)
-            .call(d3.axisBottom(xScale));
+        if (!this.rendered) {
 
-        this.chart.append('g')
-            .attr('class', 'grid')
-            .call(d3.axisLeft()
-                .scale(yScale)
-                .tickSize(-this.width, 0, 0)
-                .tickFormat(''));
+            this.yAxis = this.chart.append("g")
+                .attr("class", "y-axis");
 
-const textUpdate = svg.selectAll("text")
-.data(randomLetters());
+            this.svg.append('text')
+                .attr('x', - (this.height / 1.9))
+                .attr('y', this.margin.top)
+                .attr('transform', 'rotate(-90)')
+                .attr('text-anchor', 'middle')
+                .text('Votes');
 
-const textEnter = textUpdate.enter().append("text");
+            this.svg.append('text')
+                .attr('x', this.width / 1.5 + this.margin.bottom)
+                .attr('y', this.width - this.margin.top)
+                .attr('text-anchor', 'middle')
+                .text('Framework');
 
-const textExit = textUpdate.exit().remove();
+                this.chart.append('g')
+                    .attr('transform', `translate(0, ${this.height})`)
+                    .call(d3.axisBottom(xScale));
+                    this.girdLines = this.chart.append('g')
+                    .attr('class', 'grid')
+        }
 
-textEnter.merge(textUpdate)
-.attr("x", (d, i) => i * 16)
-.text(d => d);
-*/
-        const bar = this.chart.selectAll().data(input);
+        this.yAxis.call(this.yAxisCall);
+        this.girdLines.call(d3.axisLeft()
+        .scale(yScale)
+        .tickSize(-this.width, 0, 0)
+        .tickFormat(''));
+       
+
+        const bar = this.chart.selectAll('rect').data(input);
         bar.exit().remove();
 
         bar.enter()
@@ -69,23 +80,12 @@ textEnter.merge(textUpdate)
             .attr('y', (d) => yScale(d.votes))
             .attr('height', (d) => this.height - yScale(d.votes))
             .attr('width', xScale.bandwidth());
-            
-   /*     
 
-        this.svg.append('text')
-            .attr('x', - (this.height / 1.9))
-            .attr('y', this.margin.top)
-            .attr('transform', 'rotate(-90)')
-            .attr('text-anchor', 'middle')
-            .text('Votes');
-
-        this.svg.append('text')
-            .attr('x', this.width / 1.5 + this.margin.bottom)
-            .attr('y', this.width - this.margin.top)
-            .attr('text-anchor', 'middle')
-            .text('Framework');
-*/
-
+        /*     
+     
+     
+     */
+        this.rendered = true;
 
     }
 }
