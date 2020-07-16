@@ -53,7 +53,7 @@ export class PieChart {
     const arcDim = d3.arc().innerRadius(50)
       .outerRadius(25);
    
-        const titleText = this.svg.selectAll('text.po-title').data([meta.year]);
+        const titleText = this.svg.selectAll('text.big-label').data([meta.year]);
     
         titleText.exit().remove();
     
@@ -61,7 +61,7 @@ export class PieChart {
           .enter()
           .append('text')
           .attr('transform', `translate(75, 20)`)
-          .attr('class', 'po-title')
+          .attr('class', 'big-label')
           .merge(titleText)
           .text(
             (d) => {
