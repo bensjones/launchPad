@@ -5,21 +5,20 @@ import csv
 
 
 class Vote:
-
     def __init__(self):
-        self.vote_file = "./vote.csv"
+        self.vote_file = "/home/mweltin/launchPad/api/vote.csv"
         self.vote_dic = {}
         self.csv_to_dic()
 
-    def cast(self, token, email, framework):
-        self.vote_dic[(token, email)] = framework
+    def cast(self, session, email, framework):
+        self.vote_dic[(session, email)] = framework
         self.dic_to_csv()
 
     def tally(self):
         react = 0
         angular = 0
         emberjs = 0
-        vuejs  = 0
+        vuejs = 0
         for key, value in self.vote_dic.items():
             if "react" == value:
                 react += 1
@@ -39,6 +38,8 @@ class Vote:
 
     def dic_to_csv(self):
         with open(self.vote_file, "w", newline="") as csvfile:
-            writer = csv.writer(csvfile, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer = csv.writer(
+                csvfile, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
+            )
             for x in self.vote_dic:
                 writer.writerow([x[0], x[1], self.vote_dic[x]])

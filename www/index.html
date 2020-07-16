@@ -24,7 +24,7 @@
     crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="index.js" type="module"> </script>
-  <script src="handler.js"> </script>
+  <script src="vote.js"> </script>
 </head>
 
 <body>
@@ -63,12 +63,12 @@
                 </div>
                 <div class="row top-buffer">
                   <div class="col">
-                    <button class="btn react" onclick="Clicked(this);" type="submit" name="submit"
-                      value="React">React</button>
-                    <input class="btn angular" onclick="Clicked(this);" type="submit" name="submit"
-                      value="Angular" />
-                    <input class="btn emberjs" onclick="Clicked(this);" type="submit" name="submit" value="Ember" />
-                    <input class="btn vuejs" onclick="Clicked(this);" type="submit" name="submit" value="Vue" />
+                    <button class="btn react" onclick="voteForFramework(this);" type="submit" name="submit"
+                      value="react">React</button>
+                    <input class="btn angular" onclick="voteForFramework(this);" type="submit" name="submit"
+                      value="angular" />
+                    <input class="btn emberjs" onclick="voteForFramework(this);" type="submit" name="submit" value="emberjs" />
+                    <input class="btn vuejs" onclick="voteForFramework(this);" type="submit" name="submit" value="vuejs" />
                   </div>
                 </div>
               </form>

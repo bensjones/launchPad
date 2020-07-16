@@ -9,16 +9,7 @@ let voter_data = [
   { 'framework':'emberjs', 'votes': 100}, 
   { 'framework':'vuejs', 'votes': 120}];
 
-/* Generate a SHA-256 hash of a random number to use a proxy for a session for this exercise */
-  async function digestMessage() {
-    const message = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    const encoder = new TextEncoder();
-    const data = encoder.encode(message);
-    const hash = await crypto.subtle.digest('SHA-256', data);
-    return hash;
-  }
-  const token = await digestMessage(text);
-
+  /*
 function prepBody(data) {
   for (const [key, value] of Object.entries(data)) {
     console.log(`${key}: ${value}`);
@@ -29,8 +20,9 @@ function prepBody(data) {
     window.getComputedStyle( document.querySelector('svg') );
   }
 }
+*/
 
-function marshalData(data) {
+function refactorAPIDataToD3Format(data) {
 
   let chartData = {};
 
@@ -76,7 +68,7 @@ fetch('http://lp.local/api/fetch')
   );
 */
 
-  let chartData = marshalData(fetched_data);
+  let chartData = refactorAPIDataToD3Format(fetched_data);
   let pie1 = new PieChart('community_support', 'Community Support');
   pie1.setup();
   pie1.render(chartData.community_support);
